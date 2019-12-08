@@ -1,0 +1,23 @@
+{
+  "name": "aimeezon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "aimeezonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abojo079/Aimeezon.git"
+  },
+  "author": "Aimee Bojorquez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abojo079/Aimeezon/issues"
+  },
+  "homepage": "https://github.com/abojo079/Aimeezon#readme",
+  "dependencies": {
+    "inquirer": "^7.0.0",
+    "mysql": "^2.17.1"
+  }
+}
