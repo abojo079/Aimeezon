@@ -21,9 +21,24 @@ function customerQuery() {
     if (err) throw err;
     for (let i = 0; i < res.length; i++) {
       console.log(`${res[i].item_id} | ${res[i].product_name} | ${res[i].department_name} | ${res[i].price}| ${res[i].stock_quantity}`);
+     console.log('Hello, welcome to Aimeezon!');
     }
+
+inquirer.prompt ([
+    {
+    type: 'input',
+    name: 'order_number',
+    message: 'Please provide the item number of the product you would like to order?'   
+    },
  
-  });
+  {
+    type:'input',
+    name: 'quantity',
+    message: 'What is the quantity of your order?',
+  
+  }]);
+
   connection.end();
+});
 }
 
