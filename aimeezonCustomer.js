@@ -29,7 +29,7 @@ function customerQuery() {
 inquirer.prompt ([
     {
     type: 'input',
-    name: 'item_id',
+    name: 'item',
     message: 'Please provide the item number of the product you would like to order?',
     filter: Number,   
     },
@@ -41,19 +41,30 @@ inquirer.prompt ([
     filter: Number
 },
   
-  ]).then(function(input){
+  ])
+  
+ .then(function(input) {
+        connection.query("SELECT * FROM products WHERE ?", {item_id: input.item}, function(err, results) {
+          if (err) throw err;
+          if (results.length === 0) {
+            console.log("Item Id you select does not exist...");
+          
+          } 
+           const product = results[0];
+              if (input.quantity <= product.stock_quantity) {
+                console.log("Your order has been placed...");
 
-const item = input.item_id;
-const quantity = input.quantity;
-if (quantity <= productData.stock_quantity) {
-					console.log('Congratulations, the product you requested is in stock! Placing order!');
-
-
-
-
+                connection.end();
+         }
+ else {
+                console.log(" Please try reordering less...");
+                connection.end();
+                 }
+        }
+      )
+ }
+ )
   }
-
-  connection.end();
-});
-}
-
+  )}  
+    
+  
