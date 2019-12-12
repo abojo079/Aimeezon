@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
   host     : 'localhost',
   port     : '3306',
   user: 'root',
-  password : 'Amang0o79**',
+  password : '',
   database : 'aimeezon'
 });
  
@@ -18,7 +18,7 @@ customerQuery();
 
 function customerQuery() {
 
-         console.log('Hello, welcome to Aimeezon!');
+         console.log('Hello!!, welcome to Aimeezon!');
 
   connection.query("SELECT * FROM products", function(err, res) {
     if (err) throw err;
@@ -29,16 +29,29 @@ function customerQuery() {
 inquirer.prompt ([
     {
     type: 'input',
-    name: 'order_number',
-    message: 'Please provide the item number of the product you would like to order?'   
+    name: 'item_id',
+    message: 'Please provide the item number of the product you would like to order?',
+    filter: Number,   
     },
  
   {
     type:'input',
     name: 'quantity',
     message: 'What is the quantity of your order?',
+    filter: Number
+},
   
-  }]);
+  ]).then(function(input){
+
+const item = input.item_id;
+const quantity = input.quantity;
+if (quantity <= productData.stock_quantity) {
+					console.log('Congratulations, the product you requested is in stock! Placing order!');
+
+
+
+
+  }
 
   connection.end();
 });
